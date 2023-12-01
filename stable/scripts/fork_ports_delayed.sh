@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 30
+sleep 130
 
 if [ "$TRADING_MODE" = "paper" ]; then
   printf "Forking :::4000 onto 0.0.0.0:4002\n"
