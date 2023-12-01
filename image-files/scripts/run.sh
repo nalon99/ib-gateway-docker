@@ -4,7 +4,8 @@ export DISPLAY=:1
 export COMMANDSERVERPORT=3999 # this is used later to enable API in TWS
 
 rm -f /tmp/.X1-lock
-Xvfb $DISPLAY -ac -screen 0 1024x768x16 &
+# Xvfb $DISPLAY -ac -screen 0 1024x768x16 &
+Xvfb $DISPLAY -ac -screen 0 2048x1200x24 &
 
 if [ -n "$VNC_SERVER_PASSWORD" ]; then
   echo "Starting VNC server"

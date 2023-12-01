@@ -1,13 +1,12 @@
 version: "3.4"
 
 services:
-  ib-gateway:
+  tws-gateway:
     restart: always
     build:
       context: ./stable
       tags:
-        - "ghcr.io/gnzsnz/ib-gateway:stable"
-    image: ghcr.io/gnzsnz/ib-gateway:stable
+        - instance
     environment:
       TWS_USERID: ${TWS_USERID}
       TWS_PASSWORD: ${TWS_PASSWORD}
@@ -17,6 +16,7 @@ services:
       VNC_SERVER_PASSWORD: ${VNC_SERVER_PASSWORD:-}
       TWOFA_TIMEOUT_ACTION: ${TWOFA_TIMEOUT_ACTION:-exit}
       BYPASS_WARNING: ${BYPASS_WARNING:-}
+      COMMANDSERVERPORT: ${COMMANDSERVERPORT:-3999}
       AUTO_RESTART_TIME: ${AUTO_RESTART_TIME:-}
       AUTO_LOGOFF_TIME: ${AUTO_LOGOFF_TIME:-}
       SAVE_TWS_SETTINGS: ${SAVE_TWS_SETTINGS:-}
