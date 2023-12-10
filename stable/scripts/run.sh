@@ -5,6 +5,9 @@ export DISPLAY=:1
 rm -f /tmp/.X1-lock
 Xvfb $DISPLAY -ac -screen 0 1400x800x24 &
 
+# wait for Xvfb to start before starting vnc server
+sleep 10
+
 if [ -n "$VNC_SERVER_PASSWORD" ]; then
   echo "Starting VNC server"
   /root/scripts/run_x11_vnc.sh &

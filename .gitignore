@@ -1,3 +1,4 @@
 /.env
+/*.env
 tws_settings/
 .DS_Store

@@ -2,11 +2,15 @@ version: "3.4"
 
 services:
   tws-gateway:
-    restart: always
+    restart: "no"
     build:
       context: ./stable
+      args:
+        # this is necessary to pass environment variables from docker-compose to Dockerfile through args
+        IB_VERSION: ${IB_VERSION:-10.19.2f}
+        IB_RELEASE_CHANNEL: ${IB_RELEASE_CHANNEL:-stable}
       tags:
-        - instance
+        - tws-instance
     environment:
       COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-TWS_GATEWAY_DOCKER}
       TWS_USERID: ${TWS_USERID}
@@ -22,6 +26,7 @@ services:
       AUTO_RESTART_TIME: ${AUTO_RESTART_TIME:-}
       AUTO_LOGOFF_TIME: ${AUTO_LOGOFF_TIME:-}
       SAVE_TWS_SETTINGS: ${SAVE_TWS_SETTINGS:-}
+      IBC_SHUT_DOWN: ${IBC_SHUT_DOWN:-}
       RELOGIN_AFTER_TWOFA_TIMEOUT: ${RELOGIN_AFTER_TWOFA_TIMEOUT:-no}
       TWOFA_EXIT_INTERVAL: ${TWOFA_EXIT_INTERVAL:-60}
       TIME_ZONE: ${TIME_ZONE:-Etc/UTC}
@@ -37,3 +42,4 @@ services:
       # - "127.0.0.1:4002:4002"
       # - "127.0.0.1:5900:5900"
       - "127.0.0.1:22:22" # SSH is protecting all the communications
+      
